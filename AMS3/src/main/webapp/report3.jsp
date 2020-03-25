@@ -170,8 +170,14 @@
 						</div>
 					</div>
 				</div>
-
 				<br>
+				<c:if test="${filter==1}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Filter :</strong> ${message} <a href="report3"
+							class="close" aria-label="Close"> <span aria-hidden="true">&times;</span>
+						</a>
+					</div>
+				</c:if>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel-body ">
@@ -226,10 +232,10 @@
 															varStatus="theCount">
 															<tr>
 																<td>${theCount.count}</td>
-																<td>${employee1.firstName} ${employee1.lastName}</td>
+																<td>${employee1.firstName}&nbsp;${employee1.lastName}</td>
 																<td>${employee1.email}</td>
 																<td>${employee1.mobile}</td>
-																<td>${employee1.punchTimestamp} </td>
+																<td>${employee1.punchTimestamp}</td>
 																<td>${employee1.timeDifference}</td>
 															</tr>
 														</c:forEach>

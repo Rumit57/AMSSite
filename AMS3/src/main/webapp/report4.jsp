@@ -170,8 +170,14 @@
 						</div>
 					</div>
 				</div>
-
 				<br>
+				<c:if test="${filter==1}">
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Filter :</strong> ${message} <a href="report4"
+							class="close" aria-label="Close"> <span aria-hidden="true">&times;</span>
+						</a>
+					</div>
+				</c:if>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel-body ">

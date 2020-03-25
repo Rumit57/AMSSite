@@ -1090,6 +1090,7 @@ public class HRServiceImpl implements HRService {
 	public void filter1(Set<Integer> set, String year1, String month1, String dateRange, Model model,
 			HttpSession session) {
 
+		String message = filteMmessage(set, year1, month1, dateRange, session);
 		ArrayList<String> date12 = dateRanges(year1, month1, dateRange);
 		String strDate1 = date12.get(0);
 		String strDate2 = date12.get(1);
@@ -1121,6 +1122,7 @@ public class HRServiceImpl implements HRService {
 			}
 		}
 		model.addAttribute("date", strDate1 + " to " + strDate2);
+		model.addAttribute("message", message);
 		model.addAttribute("reportData", logs);
 
 	}
@@ -1152,6 +1154,7 @@ public class HRServiceImpl implements HRService {
 	// filter3
 	public void filter3(Set<Integer> set, String year1, String month1, String dateRange, Model model,
 			HttpSession session) {
+		String message = filteMmessage(set, year1, month1, dateRange, session);
 		ArrayList<String> date12 = dateRanges(year1, month1, dateRange);
 		String strDate1 = date12.get(0);
 		String strDate2 = date12.get(1);
@@ -1205,6 +1208,7 @@ public class HRServiceImpl implements HRService {
 			}
 			cStart.add(Calendar.DAY_OF_MONTH, 1);
 		}
+		model.addAttribute("message", message);
 		model.addAttribute("reportData", employeeTotal);
 	}
 
@@ -1235,6 +1239,7 @@ public class HRServiceImpl implements HRService {
 	// filter2
 	public void filter2(Set<Integer> set, String year1, String month1, String dateRange, Model model,
 			HttpSession session) {
+		String message = filteMmessage(set, year1, month1, dateRange, session);
 		ArrayList<String> date12 = dateRanges(year1, month1, dateRange);
 		String strDate1 = date12.get(0);
 		String strDate2 = date12.get(1);
@@ -1340,6 +1345,7 @@ public class HRServiceImpl implements HRService {
 			}
 			cStart.add(Calendar.DAY_OF_MONTH, 1);
 		}
+		model.addAttribute("message", message);
 		model.addAttribute("reportData", employeeTotal);
 	}
 
@@ -1420,7 +1426,7 @@ public class HRServiceImpl implements HRService {
 	// filter4
 	public void filter4(Set<Integer> set, String year1, String month1, String dateRange, Model model,
 			HttpSession session) {
-
+		String message = filteMmessage(set, year1, month1, dateRange, session);
 		ArrayList<String> date12 = dateRanges(year1, month1, dateRange);
 		String strDate1 = date12.get(0);
 		String strDate2 = date12.get(1);
@@ -1438,8 +1444,8 @@ public class HRServiceImpl implements HRService {
 				}
 			}
 		}
+		model.addAttribute("message", message);
 		model.addAttribute("reportData", employeeTotal);
-
 	}
 
 	// Date Range split
@@ -1490,6 +1496,32 @@ public class HRServiceImpl implements HRService {
 			}
 		}
 		return date12;
+	}
+
+	// Filter Message
+	public String filteMmessage(Set<Integer> set, String year1, String month1, String dateRange, HttpSession session) {
+		String message = "";
+		int cid = (Integer) session.getAttribute("MY_SESSION_COMPANY_ID");
+		List<Employee> employee = employeeRepository.countEmp(cid);
+		if (employee.size() == set.size()) {
+			if (year1 == null) {
+				message = dateRange;
+			} else if (year1 != null && month1.equals("0")) {
+				message = year1;
+			} else {
+				message = month1 + " - " + year1;
+			}
+		} else {
+			if (year1 == null) {
+				message = "Employee name with " + dateRange;
+			} else if (year1 != null && month1.equals("0")) {
+				message = "Employee name with year(" + year1 + ")";
+			} else {
+				message = "Employee name with month(" + month1 + ") and year(" + year1 + ")";
+			}
+		}
+		return message;
+
 	}
 
 }

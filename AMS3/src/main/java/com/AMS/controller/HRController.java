@@ -145,6 +145,7 @@ public class HRController {
 			HttpSession session) {
 		hrService.workingHourRange(year, month1, employeeId, dateRange, model, session);
 		model.addAttribute("employees", hrService.findAllEmployee(session));
+		model.addAttribute("filter","1");
 		return "report1";
 	}
 
@@ -162,6 +163,7 @@ public class HRController {
 			HttpSession session) {
 		hrService.lateComingRange(year, month1, employeeId, dateRange, model, session);
 		model.addAttribute("employees", hrService.findAllEmployee(session));
+		model.addAttribute("filter","1");
 		return "report2";
 	}
 
@@ -179,6 +181,7 @@ public class HRController {
 			HttpSession session) {
 		hrService.lateStayingRange(year, month1, employeeId, dateRange, model, session);
 		model.addAttribute("employees", hrService.findAllEmployee(session));
+		model.addAttribute("filter","1");
 		return "report3";
 	}
 
@@ -196,6 +199,7 @@ public class HRController {
 			HttpSession session) {
 		hrService.fixedMissPunchRange(year, month1, employeeId, dateRange, model, session);
 		model.addAttribute("employees", hrService.findAllEmployee(session));
+		model.addAttribute("filter","1");
 		return "report4";
 	}
 

@@ -77,7 +77,7 @@
 
 		<div id="page-wrapper">
 			<div class="header">
-				<h3 class="page-header">Late Coming Report</h3>
+				<h3 class="page-header">All Employee Working Hour Report</h3>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel-body ">
@@ -122,7 +122,7 @@
 											</select>
 										</div>
 									</div>
-									
+
 									<div class="col-md-6 col-lg-2">
 										<div class="card">
 											<div id="hideDropdown1" style="display: none;">
@@ -170,8 +170,17 @@
 						</div>
 					</div>
 				</div>
-
 				<br>
+				<c:if test="${filter==1}">
+				<div class="alert alert-success alert-dismissible"
+					role="alert">
+					<strong>Filter :</strong> ${message}
+					<a href="report1" class="close" 
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</a>
+				</div>
+				</c:if>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="panel-body ">
