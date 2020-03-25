@@ -128,4 +128,7 @@ public interface HRService {
 	// Range wise data get Report4
 	public void fixedMissPunchRange(String year, String month1, String employeeId, String dateRange, Model model,
 			HttpSession session);
+	
+	// find Missed Punch Data
+	public void findMissedPunchData(Model model, HttpSession session);
 }

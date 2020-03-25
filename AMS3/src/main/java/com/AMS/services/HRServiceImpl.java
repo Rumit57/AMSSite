@@ -1523,5 +1523,74 @@ public class HRServiceImpl implements HRService {
 		return message;
 
 	}
+	
+	
+	//missed punch data
+	public void missedPunchData(int cid,String strdata1,String strdata2,Model model)
+	{
+		Date date1 = null;
+		Date date2 = null;
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			date1 = formatter.parse(strdata1);
+			date2 = formatter.parse(strdata2);
+		} catch (ParseException e) {
+			System.out.print(e);
+		}
+		Calendar cStart = Calendar.getInstance();
+		cStart.setTime(date1);
+		Calendar cEnd = Calendar.getInstance();
+		cEnd.setTime(date2);
+		cEnd.add(Calendar.DAY_OF_MONTH, 1);
+		ArrayList<Integer> punchIds = new ArrayList<Integer>();
+		for (Date date = cStart.getTime(); cStart.before(cEnd); cStart.add(Calendar.DATE, 1), date = cStart.getTime()) {
+		    
+			//Date date = Calendar.getInstance().getTime();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		// strDate = dateFormat.format(date);
+			Timestamp Time1 = Timestamp.valueOf(dateFormat.format(date.getTime())+" 00:00:00");
+			Timestamp Time2 = Timestamp.valueOf(dateFormat.format(date.getTime())+" 23:59:59");
+			List<Employee> employee=employeeRepository.countEmp(cid);
+			for (Employee integer : employee) {
+				List<PunchLogs> logs = punchLogsRepository.findByEmpId(integer.getObjId(), Time1, Time2);
+				int count = 0;
+				int punchId = 0;
+				for (PunchLogs logs2 : logs) {
+					punchId = logs2.getObjId();
+					count++;
+				}
+				if (count % 2 != 0) {
+					punchIds.add(punchId);
+				}
+			}
+//			9013151515
+		}
+		List<PunchLogs> logs = punchLogsRepository.findAllById(punchIds);
+		model.addAttribute("employeePresent", logs);
+	}
+
+	@Override
+	public void findMissedPunchData(Model model, HttpSession session) {
+		int cid = (Integer) session.getAttribute("MY_SESSION_COMPANY_ID");
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		//date1
+		List<PunchLogs> punchLogs=punchLogsRepository.dateASC();
+		String strdate1="";
+		for (PunchLogs punchLogs2 : punchLogs) {
+			strdate1=punchLogs2.getPunchTimestamp().toString();
+			break;
+		}
+		if(punchLogs.isEmpty())
+		{
+			strdate1=dateFormat.format(date);
+		}
+		
+		//date2
+		String strDate = dateFormat.format(yesterday(date));
+		String strdate2=strDate;
+		missedPunchData(cid,strdate1,strdate2,model);
+		
+	}
 
 }
