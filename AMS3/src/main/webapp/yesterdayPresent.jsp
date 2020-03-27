@@ -141,6 +141,8 @@
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -196,25 +198,21 @@
 																	<td>${employee1.firstName}&nbsp;${employee1.lastName}</td>
 																	<td>${employee1.email}</td>
 																	<td>${employee1.mobile}</td>
-																	<td>
-																	<c:choose>
+																	<td><c:choose>
 																			<c:when test="${employee1.slot1 eq 'Y'}">
 																				<i class="fa fa-check text-success"></i>
 																			</c:when>
 																			<c:otherwise>
 																				<i class="fa fa-times text-danger"></i>
 																			</c:otherwise>
-																		</c:choose>
-																		&nbsp;
-																		 <c:choose>
+																		</c:choose> &nbsp; <c:choose>
 																			<c:when test="${employee1.slot2 eq 'Y'}">
 																				<i class="fa fa-check text-success"></i>
 																			</c:when>
 																			<c:otherwise>
 																				<i class="fa fa-times text-danger"></i>
 																			</c:otherwise>
-																		</c:choose>
-																		</td>
+																		</c:choose></td>
 																	<td><a style="color: blue"
 																		href="yesterdayPresentStatus?id=${employee1.objId}"><u>Status</u></a></td>
 																</tr>

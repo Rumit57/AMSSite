@@ -71,6 +71,8 @@ textarea {
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -166,7 +168,8 @@ textarea {
 																<th data-field="name" data-editable="true">Name</th>
 																<th data-field="email" data-editable="true">Email</th>
 																<th data-field="phone" data-editable="true">Phone</th>
-																<th data-field="punchOutTime" data-editable="true">PunchOut Time</th>
+																<th data-field="punchOutTime" data-editable="true">PunchOut
+																	Time</th>
 																<th data-field="reason" data-editable="true">Reason</th>
 																<th data-field="applied" data-editable="true">Applied</th>
 															</tr>

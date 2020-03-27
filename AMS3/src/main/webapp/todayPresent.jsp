@@ -23,8 +23,10 @@
 <link href="assets/css/custom-styles.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 
 <style>
@@ -136,6 +138,8 @@
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>

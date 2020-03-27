@@ -510,8 +510,52 @@ public class HRController {
 		if (!hrService.checkSession(session)) {
 			return "login";
 		} else {
+			model.addAttribute("employees", hrService.findAllEmployee(session));
 			hrService.findMissedPunchData(model, session);
 			return "missedPunchHR";
+		}
+	}
+
+	// Missed punch search Status
+	@RequestMapping("searchStatus")
+	public String searchStatus(int employeeId, String date, Model model, HttpSession session) {
+		if (!hrService.checkSession(session)) {
+			return "login";
+		} else {
+			model.addAttribute("employees", hrService.findAllEmployee(session));
+			hrService.findEmployeeStatusData(employeeId,date, model, session);
+			hrService.findMissedPunchData(model, session);
+			return "missedPunchHR";
+		}
+	}
+
+	// Missed punch fix
+	@RequestMapping("missedPunchFix")
+	public String missedPunchFix(int id, String date, Model model, HttpSession session) {
+		if (!hrService.checkSession(session)) {
+			return "login";
+		} else {
+			model.addAttribute("employees", hrService.findAllEmployee(session));
+			hrService.findMissedPunchData(model, session);
+			model.addAttribute("fix", 1);
+			model.addAttribute("eid", id);
+			model.addAttribute("eDate", date);
+			return "missedPunchHR";
+		}
+	}
+
+	// Missed punch fix submit
+	@RequestMapping("missedPunchFixSubmit")
+	public String missedPunchFixSubmit(int employee, String eDate, String punchTime, MissedPunch missedPunch,
+			Model model, HttpSession session) {
+		if (!hrService.checkSession(session)) {
+			return "login";
+		} else {
+			if (hrService.addMissedPunchRecord(employee, eDate, punchTime, missedPunch, model, session)) {
+				return "redirect:missedPunchHR";
+			} else {
+				return "pageNotFound";
+			}
 		}
 	}
 }

@@ -68,6 +68,8 @@
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -172,14 +174,11 @@
 				</div>
 				<br>
 				<c:if test="${filter==1}">
-				<div class="alert alert-success alert-dismissible"
-					role="alert">
-					<strong>Filter :</strong> ${message}
-					<a href="report1" class="close" 
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</a>
-				</div>
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<strong>Filter :</strong> ${message} <a href="report1"
+							class="close" aria-label="Close"> <span aria-hidden="true">&times;</span>
+						</a>
+					</div>
 				</c:if>
 				<div class="row">
 					<div class="col-md-12">

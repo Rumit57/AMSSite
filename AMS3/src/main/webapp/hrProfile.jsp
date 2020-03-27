@@ -182,6 +182,8 @@
 
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -236,9 +238,9 @@
 								<div class="col-md-2">
 									<input type="button" class="profile-edit-btn1" onclick="edit()"
 										id="edit" value="Edit Profile" />
-										
-									<button type="button" id="cancel" class="btn btn-danger" onclick="cancel()"
-										 style="visibility: hidden">X</button>
+
+									<button type="button" id="cancel" class="btn btn-danger"
+										onclick="cancel()" style="visibility: hidden">X</button>
 								</div>
 
 								<div class="col-md-8">
@@ -417,7 +419,7 @@
 					document.getElementById("edit").style.visibility = "hidden";
 					document.getElementById("cancel").style.visibility = "visible";
 				}
-			
+
 				function cancel() {
 					var name = document.getElementById("fname").readOnly = true;
 					var name = document.getElementById("lname").readOnly = true;

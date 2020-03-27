@@ -22,8 +22,10 @@
 <link href="assets/css/custom-styles.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link
 	href="plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css"
 	rel="stylesheet" />
@@ -70,6 +72,8 @@ textarea {
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -111,23 +115,25 @@ textarea {
 																<th data-field="id">NO</th>
 																<th data-field="name" data-editable="true">Name</th>
 																<th data-field="email" data-editable="true">Email</th>
-																<th data-field="phone" data-editable="true">Phone No.</th>
+																<th data-field="phone" data-editable="true">Phone
+																	No.</th>
 																<th data-field="fix" data-editable="true">Action</th>
 															</tr>
 														</thead>
 														<tbody>
-														<c:forEach items="${employeePresent}" var="employee1"
+															<c:forEach items="${employeePresent}" var="employee1"
 																varStatus="theCount">
 																<tr>
 																	<td>${theCount.count}</td>
 																	<td>${employee1.employee.firstName}&nbsp;${employee1.employee.lastName}</td>
 																	<td>${employee1.employee.email}</td>
 																	<td>${employee1.employee.mobile}</td>
-																	<td><a href="yesterdayMissedPunchFix?id=${employee1.employee.objId}"><button style="width: 80%"
-																		class="btn btn-success ">Fix</button></a></td>
+																	<td><a
+																		href="yesterdayMissedPunchFix?id=${employee1.employee.objId}"><button
+																				style="width: 80%" class="btn btn-success ">Fix</button></a></td>
 																</tr>
 															</c:forEach>
-															
+
 														</tbody>
 													</table>
 												</div>
@@ -146,7 +152,7 @@ textarea {
 			</div>
 		</div>
 	</div>
-<c:if test="${fix==1}">
+	<c:if test="${fix==1}">
 		<script type="text/javascript">
 			$(window).load(function() {
 				$('#myModal').modal('show');
@@ -165,8 +171,8 @@ textarea {
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<form action="yesterdayMissedPunchFixSubmit">
-				<div class="modal-body">
-					<input type="hidden" name="employee" value="${eid}"/>
+					<div class="modal-body">
+						<input type="hidden" name="employee" value="${eid}" />
 						<div class="form-group">
 							<label>Punch Time</label>
 							<div class="input-group date">
@@ -178,16 +184,16 @@ textarea {
 						</div>
 						<div class="form-group">
 							<label>Reason</label>
-							<textarea class="form-control" rows="4" cols="50" name="reason" required
-								placeholder="Write a Reason.."></textarea>
+							<textarea class="form-control" rows="4" cols="50" name="reason"
+								required placeholder="Write a Reason.."></textarea>
 						</div>
-					
-				</div>
-				<div class="modal-footer">
-					<button type="button" data-dismiss="modal"
-						class="btn btn-secondary">Close</button>
-					<input type="submit" class="btn btn-primary" value="Submit"/>
-				</div>
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" data-dismiss="modal"
+							class="btn btn-secondary">Close</button>
+						<input type="submit" class="btn btn-primary" value="Submit" />
+					</div>
 				</form>
 			</div>
 		</div>

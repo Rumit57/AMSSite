@@ -70,6 +70,8 @@ textarea {
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -133,7 +135,8 @@ textarea {
 																	<td>${employee1.employee.mobile}</td>
 																	<td>${employee1.punchTimestamp}</td>
 																	<td>-</td>
-																	<td><u><a href="yesterdayReasonAdd?id=${employee1.employee.objId}"
+																	<td><u><a
+																			href="yesterdayReasonAdd?id=${employee1.employee.objId}"
 																			style="color: blue"> Add Reason</a></u></td>
 																</tr>
 															</c:forEach>
@@ -190,11 +193,11 @@ textarea {
 				</div>
 				<form action="yesterdayReasonAddSubmit">
 					<div class="modal-body">
-					<input type="hidden" name="employee" value="${eid}"/>
+						<input type="hidden" name="employee" value="${eid}" />
 						<div class="form-group">
 							<label>Reason</label>
-							<textarea class="form-control" name="reason" rows="5" cols="50" required
-								placeholder="Write a Reason.."></textarea>
+							<textarea class="form-control" name="reason" rows="5" cols="50"
+								required placeholder="Write a Reason.."></textarea>
 						</div>
 
 					</div>

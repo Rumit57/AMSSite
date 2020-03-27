@@ -22,7 +22,7 @@
 	rel='stylesheet' type='text/css' />
 <link rel="stylesheet" href="css/data-table/bootstrap-table.css" />
 <link rel="stylesheet" href="css/data-table/bootstrap-editable.css" />
- <!--  <script type="text/javascript">
+<!--  <script type="text/javascript">
 	function doAjaxPost() {
 		
 		$.ajax({
@@ -74,6 +74,8 @@
 
 						<li><a class="active-menu" href="#"><i
 								class="fa fa-table"></i> Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -82,58 +84,58 @@
 		</nav>
 
 		<div id="page-wrapper">
-			
-				<div class="header">
-					<h1 class="page-header">Live Activity</h1>
-					<div class="row">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="sparkline13-list">
-								<div class="sparkline13-graph">
-									<div class="datatable-dashv1-list custom-datatable-overright">
-										<div id="toolbar">
+
+			<div class="header">
+				<h1 class="page-header">Live Activity</h1>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="sparkline13-list">
+							<div class="sparkline13-graph">
+								<div class="datatable-dashv1-list custom-datatable-overright">
+									<div id="toolbar">
 										<!--  <input type="button" class="btn btn-primary" value="refresh"
-												onclick="doAjaxPost()"> -->	
-										</div>
-
-										<table id="table" data-toggle="table" data-pagination="true"
-											data-search="true" data-show-columns="true"
-											data-show-pagination-switch="true" data-key-events="true"
-											data-show-toggle="true" data-resizable="true"
-											data-cookie="true" data-cookie-id-table="saveId"
-											data-click-to-select="true" data-toolbar="#toolbar">
-											<thead>
-												<tr>
-													<th data-field="id">ID</th>
-													<th data-field="name" data-editable="true">Name</th>
-													<th data-field="time" data-editable="true">Date & Time</th>
-													<th data-field="status" data-editable="true">Status</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${employees}" var="employee1"
-													varStatus="theCount">
-													<tr>
-														<!--  <td>${theCount.count}</td> -->
-														<td>${employee1.employee.objId}</td>
-														<td>${employee1.employee.firstName}
-															${employee1.employee.lastName}</td>
-														<td>${employee1.punchTimestamp}</td>
-														<td>${employee1.status}</td>
-													</tr>
-												</c:forEach>
-
-											</tbody>
-										</table>
+												onclick="doAjaxPost()"> -->
 									</div>
+
+									<table id="table" data-toggle="table" data-pagination="true"
+										data-search="true" data-show-columns="true"
+										data-show-pagination-switch="true" data-key-events="true"
+										data-show-toggle="true" data-resizable="true"
+										data-cookie="true" data-cookie-id-table="saveId"
+										data-click-to-select="true" data-toolbar="#toolbar">
+										<thead>
+											<tr>
+												<th data-field="id">ID</th>
+												<th data-field="name" data-editable="true">Name</th>
+												<th data-field="time" data-editable="true">Date & Time</th>
+												<th data-field="status" data-editable="true">Status</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach items="${employees}" var="employee1"
+												varStatus="theCount">
+												<tr>
+													<!--  <td>${theCount.count}</td> -->
+													<td>${employee1.employee.objId}</td>
+													<td>${employee1.employee.firstName}
+														${employee1.employee.lastName}</td>
+													<td>${employee1.punchTimestamp}</td>
+													<td>${employee1.status}</td>
+												</tr>
+											</c:forEach>
+
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			
+			</div>
 
-		<div id="info"></div>
-		${count}
+
+			<div id="info"></div>
+			${count}
 
 			<div id="page-inner">
 				<%@include file="footer.jsp"%>

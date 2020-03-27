@@ -52,6 +52,8 @@
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a class="active-menu" href="#"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -62,9 +64,9 @@
 		<div id="page-wrapper">
 			<div class="header">
 				<h1 class="page-header">
-					<center>Reports </center>
+					<center>Reports</center>
 				</h1>
-				
+
 				<div class="col-md-12">
 					<div class="col-md-3"></div>
 					<a href="report1">
@@ -73,7 +75,8 @@
 								<div class="panel panel-primary">
 									<div class="number">
 										<h3></h3>
-										<small style="color: black;">All Employee Working Hour Report</small>
+										<small style="color: black;">All Employee Working Hour
+											Report</small>
 									</div>
 									<div class="icon">
 										<i class="fa fa-users fa-5x red"></i>
@@ -103,7 +106,7 @@
 					</a>
 					<div class="col-md-3"></div>
 				</div>
-				
+
 				<div class="col-md-12">
 					<div class="col-md-3"></div>
 					<a href="report3">
@@ -123,7 +126,7 @@
 					</a>
 					<div class="col-md-3"></div>
 				</div>
-				
+
 				<div class="col-md-12">
 					<div class="col-md-3"></div>
 					<a href="report4">

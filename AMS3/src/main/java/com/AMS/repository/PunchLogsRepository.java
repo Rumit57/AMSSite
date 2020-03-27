@@ -13,11 +13,11 @@ import com.AMS.model.PunchLogs;
 public interface PunchLogsRepository extends JpaRepository<PunchLogs, Integer> {
 
 	// live activity data get
-	@Query("SELECT p FROM PunchLogs p where p.employee.company.objId=:cId AND p.punchTimestamp BETWEEN :startDate AND :endDate")
+	@Query("SELECT p FROM PunchLogs p where p.employee.company.objId=:cId AND p.punchTimestamp BETWEEN :startDate AND :endDate ORDER BY p.punchTimestamp")
 	List<PunchLogs> liveActivityDataGet(@Param("cId") int cId, @Param("startDate") Timestamp startDate,
 			@Param("endDate") Timestamp endDate);
 
-	@Query("SELECT p FROM PunchLogs p where p.employee.objId=:empId AND p.punchTimestamp BETWEEN :startDate AND :endDate")
+	@Query("SELECT p FROM PunchLogs p where p.employee.objId=:empId AND p.punchTimestamp BETWEEN :startDate AND :endDate ORDER BY p.punchTimestamp")
 	List<PunchLogs> findByEmpId(@Param("empId") int empId, @Param("startDate") Timestamp startDate,
 			@Param("endDate") Timestamp endDate);
 

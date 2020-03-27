@@ -56,6 +56,8 @@
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -106,10 +108,10 @@
 																varStatus="theCount">
 																<tr>
 																	<td>${theCount.count}</td>
-																	<td>${employee1.firstName} ${employee1.lastName}</td>
+																	<td>${employee1.firstName}${employee1.lastName}</td>
 																	<td>${employee1.email}</td>
 																	<td>${employee1.mobile}</td>
-															
+
 																</tr>
 															</c:forEach>
 														</tbody>

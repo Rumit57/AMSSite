@@ -1523,11 +1523,9 @@ public class HRServiceImpl implements HRService {
 		return message;
 
 	}
-	
-	
-	//missed punch data
-	public void missedPunchData(int cid,String strdata1,String strdata2,Model model)
-	{
+
+	// missed punch data
+	public void missedPunchData(int cid, String strdata1, String strdata2, Model model) {
 		Date date1 = null;
 		Date date2 = null;
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -1544,13 +1542,13 @@ public class HRServiceImpl implements HRService {
 		cEnd.add(Calendar.DAY_OF_MONTH, 1);
 		ArrayList<Integer> punchIds = new ArrayList<Integer>();
 		for (Date date = cStart.getTime(); cStart.before(cEnd); cStart.add(Calendar.DATE, 1), date = cStart.getTime()) {
-		    
-			//Date date = Calendar.getInstance().getTime();
+
+			// Date date = Calendar.getInstance().getTime();
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		// strDate = dateFormat.format(date);
-			Timestamp Time1 = Timestamp.valueOf(dateFormat.format(date.getTime())+" 00:00:00");
-			Timestamp Time2 = Timestamp.valueOf(dateFormat.format(date.getTime())+" 23:59:59");
-			List<Employee> employee=employeeRepository.countEmp(cid);
+			// strDate = dateFormat.format(date);
+			Timestamp Time1 = Timestamp.valueOf(dateFormat.format(date.getTime()) + " 00:00:00");
+			Timestamp Time2 = Timestamp.valueOf(dateFormat.format(date.getTime()) + " 23:59:59");
+			List<Employee> employee = employeeRepository.countEmp(cid);
 			for (Employee integer : employee) {
 				List<PunchLogs> logs = punchLogsRepository.findByEmpId(integer.getObjId(), Time1, Time2);
 				int count = 0;
@@ -1566,6 +1564,10 @@ public class HRServiceImpl implements HRService {
 //			9013151515
 		}
 		List<PunchLogs> logs = punchLogsRepository.findAllById(punchIds);
+		for (PunchLogs punchLogs : logs) {
+			Date punchDate = punchLogs.getPunchTimestamp();
+			punchLogs.setPunchDate(formatter.format(punchDate));
+		}
 		model.addAttribute("employeePresent", logs);
 	}
 
@@ -1574,23 +1576,76 @@ public class HRServiceImpl implements HRService {
 		int cid = (Integer) session.getAttribute("MY_SESSION_COMPANY_ID");
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		//date1
-		List<PunchLogs> punchLogs=punchLogsRepository.dateASC();
-		String strdate1="";
+		// date1
+		List<PunchLogs> punchLogs = punchLogsRepository.dateASC();
+		String strdate1 = "";
 		for (PunchLogs punchLogs2 : punchLogs) {
-			strdate1=punchLogs2.getPunchTimestamp().toString();
+			strdate1 = punchLogs2.getPunchTimestamp().toString();
 			break;
 		}
-		if(punchLogs.isEmpty())
-		{
-			strdate1=dateFormat.format(date);
+		if (punchLogs.isEmpty()) {
+			strdate1 = dateFormat.format(date);
 		}
-		
-		//date2
+
+		// date2
 		String strDate = dateFormat.format(yesterday(date));
-		String strdate2=strDate;
-		missedPunchData(cid,strdate1,strdate2,model);
-		
+		String strdate2 = strDate;
+		missedPunchData(cid, strdate1, strdate2, model);
+
+	}
+
+	@Override
+	public boolean addMissedPunchRecord(int employeeId, String eDate, String punchTime, MissedPunch missedPunch,
+			Model model, HttpSession session) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date newDate = null;
+		try {
+			newDate = dateFormat.parse(eDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String punchTimeNew = punchTime + ":00";
+		final Timestamp timestamp = Timestamp
+				.valueOf(new SimpleDateFormat("yyyy-MM-dd ").format(newDate).concat(punchTimeNew));
+		int session1 = (Integer) session.getAttribute("MY_SESSION_ID");
+		Appuser appuser = repo.getOne(session1);
+		missedPunch.setFixedBy(appuser);
+		Employee employee = employeeRepository.getOne(employeeId);
+		missedPunch.setEmployee(employee);
+		PunchMachine punchMachine = machineRepository.getOne(1);
+		missedPunch.setMachine(punchMachine);
+		missedPunch.setPunchTimestamp(timestamp);
+		missedPunchRepository.save(missedPunch);
+
+		PunchLogs logs = new PunchLogs();
+		logs.setEmployee(employee);
+		logs.setMachine(punchMachine);
+		logs.setPunchTimestamp(timestamp);
+		punchLogsRepository.save(logs);
+		return true;
+
+	}
+
+	@Override
+	public void findEmployeeStatusData(int eId, String StatusDate, Model model, HttpSession session) {
+
+		if (eId == 0) {
+			model.addAttribute("error", "*select employee");
+			model.addAttribute("error1", 1);
+		} else {
+			Timestamp todayTimestamp1 = Timestamp.valueOf(StatusDate + " 00:00:00");
+			Timestamp todayTimestamp2 = Timestamp.valueOf(StatusDate + " 23:59:59");
+			List<PunchLogs> list = punchLogsRepository.findByEmpId(eId, todayTimestamp1, todayTimestamp2);
+			if (list.isEmpty()) {
+				model.addAttribute("error", "*no record found");
+				model.addAttribute("error1", 1);
+			} else {
+				model.addAttribute("showStatus", 1);
+				model.addAttribute("employeePresentStatus", list);
+			}
+
+		}
+
 	}
 
 }

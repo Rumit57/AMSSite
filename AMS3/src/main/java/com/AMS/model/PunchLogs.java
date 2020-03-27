@@ -32,6 +32,8 @@ public class PunchLogs {
 	@Transient
     private String status;
 	
+	@Transient
+    private String punchDate;
 	
 	@Column(name ="PUNCH_TIMESTAMP")
 	private Timestamp punchTimestamp;
@@ -86,6 +88,14 @@ public class PunchLogs {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPunchDate() {
+		return punchDate;
+	}
+
+	public void setPunchDate(String punchDate) {
+		this.punchDate = punchDate;
 	}
 
 

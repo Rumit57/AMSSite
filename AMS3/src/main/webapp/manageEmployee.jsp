@@ -73,6 +73,8 @@ style>.alert {
 								Employee</a></li>
 						<li><a href="liveActivity"><i class="fa fa-table"></i>
 								Live Activity </a></li>
+						<li><a href="missedPunchHR"><i class="fa fa-edit"></i>
+								Missed Punches </a></li>
 						<li><a href="reports"><i
 								class="glyphicon glyphicon-list-alt"></i> Reports </a></li>
 					</ul>
@@ -98,19 +100,20 @@ style>.alert {
 										<div class="sparkline13-list">
 											<div class="sparkline13-graph">
 												<div>
-													
-														<button type="button" data-toggle="modal"
-															data-target="#myModal" class="btn btn-primary">+
-															Add Employee</button> &nbsp;
-														<input class="btn btn-success" onclick="edit()"
-															type="button" id="edit" value="Import"/>&nbsp;
-															<a href="http://127.0.0.1:8887/CSV/format.csv"><i class="glyphicon glyphicon-download-alt"></i> CSV Format</a>
-														<form class="form-inline" action="importData1"
+
+													<button type="button" data-toggle="modal"
+														data-target="#myModal" class="btn btn-primary">+
+														Add Employee</button>
+													&nbsp; <input class="btn btn-success" onclick="edit()"
+														type="button" id="edit" value="Import" />&nbsp; <a
+														href="http://127.0.0.1:8887/CSV/format.csv"><i
+														class="glyphicon glyphicon-download-alt"></i> CSV Format</a>
+													<form class="form-inline" action="importData1"
 														enctype="multipart/form-data" method="post">
-														
+
 														<div id="importShow" style="visibility: hidden;">
-														
-														<div class="form-group">
+
+															<div class="form-group">
 																<input type="file" name="file1" />
 															</div>
 															<div id="importShow" class="form-group">
@@ -458,7 +461,7 @@ style>.alert {
 			 //swal("Deleted!", "Your imaginary file has been deleted.", "success");
 		}
 	</script>
-	
+
 	<script>
 		function edit() {
 			if (document.getElementById("edit").value == 'Import') {
